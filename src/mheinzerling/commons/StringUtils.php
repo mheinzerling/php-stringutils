@@ -5,7 +5,10 @@ class StringUtils
 {
     public static function startsWith($haystack, $needle)
     {
-        return substr($haystack, 0, strlen($needle)) === $needle;
+        if (is_null($needle)) return false;
+        $length = strlen($needle);
+        if ($length == 0) return true;
+        return substr($haystack, 0, $length) === $needle;
     }
 
     public static function contains($haystack, $needle, $ignoreCase = true)
