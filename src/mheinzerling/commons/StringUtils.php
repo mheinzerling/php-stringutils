@@ -27,4 +27,10 @@ class StringUtils
         $arr = explode($delimiter, $input);
         return array_map('trim', $arr);
     }
+
+    public static function isBlank($str)
+    {
+        if (is_null($str)) return true;
+        return trim($str) === '';
+    }
 }
