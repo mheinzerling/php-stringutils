@@ -19,11 +19,16 @@ class StringUtils
 
     public static function firstCharToUpper($string)
     {
-        return  ucfirst($string);
+        return ucfirst($string);
     }
 
     public static function trimExplode($delimiter, $input)
     {
+        if (is_null($input)) return array();
+
+        if (self::isBlank($delimiter)) {
+            return array(trim($input));
+        }
         $arr = explode($delimiter, $input);
         return array_map('trim', $arr);
     }
