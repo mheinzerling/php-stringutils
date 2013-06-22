@@ -18,5 +18,16 @@ class StringUtilsTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(true, StringUtils::startsWith("abcdef", "abc"), "valid - substr");
         $this->assertEquals(true, StringUtils::startsWith("abcdef", "abcdef"), "valid - full");
     }
-    //TODO other test
+
+    public function testFirstCharToUpper()
+    {
+        $this->assertEquals(null, StringUtils::firstCharToUpper(null), "null");
+        $this->assertEquals("", StringUtils::firstCharToUpper(""), "empty");
+        $this->assertEquals(" f", StringUtils::firstCharToUpper(" f"), "space");
+        $this->assertEquals("F", StringUtils::firstCharToUpper("f"), "single letter");
+        $this->assertEquals("Foo", StringUtils::firstCharToUpper("foo"), "normal usecase");
+        $this->assertEquals("Foo", StringUtils::firstCharToUpper("Foo"), "no effect");
+        $this->assertEquals("5foo", StringUtils::firstCharToUpper("5foo"), "numeric");
+    }
+
 }

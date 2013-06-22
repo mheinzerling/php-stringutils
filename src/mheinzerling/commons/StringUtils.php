@@ -19,7 +19,7 @@ class StringUtils
 
     public static function firstCharToUpper($string)
     {
-        return strtoupper($string[0]) . substr($string, 1);
+        return  ucfirst($string);
     }
 
     public static function trimExplode($delimiter, $input)
