@@ -19,6 +19,20 @@ class StringUtilsTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(true, StringUtils::startsWith("abcdef", "abcdef"), "valid - full");
     }
 
+    public function testEndsWith()
+    {
+        $this->assertEquals(false, StringUtils::endsWith("abcdef", null), "no needle");
+        $this->assertEquals(false, StringUtils::endsWith(null, "a"), "no haystack");
+        $this->assertEquals(false, StringUtils::endsWith("", "a"), "to long - empty");
+        $this->assertEquals(false, StringUtils::endsWith("abcdef", "abcdefg"), "to long - regular");
+
+        $this->assertEquals(true, StringUtils::endsWith("", ""), "both empty");
+        $this->assertEquals(true, StringUtils::endsWith("abcdef", ""), "empty needle");
+        $this->assertEquals(true, StringUtils::endsWith("abcdef", "f"), "valid - char");
+        $this->assertEquals(true, StringUtils::endsWith("abcdef", "def"), "valid - substr");
+        $this->assertEquals(true, StringUtils::endsWith("abcdef", "abcdef"), "valid - full");
+    }
+
     public function testFirstCharToUpper()
     {
         $this->assertEquals(null, StringUtils::firstCharToUpper(null), "null");

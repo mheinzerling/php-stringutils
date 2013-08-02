@@ -11,6 +11,14 @@ class StringUtils
         return substr($haystack, 0, $length) === $needle;
     }
 
+    public static function endsWith($haystack, $needle)
+    {
+        if (is_null($needle)) return false;
+        $length = strlen($needle);
+        if ($length == 0) return true;
+        return substr($haystack, -$length) == $needle;
+    }
+
     public static function contains($haystack, $needle, $ignoreCase = true)
     {
         if ($ignoreCase) return stristr($haystack, $needle) !== FALSE;
