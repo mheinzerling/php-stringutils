@@ -29,7 +29,12 @@ class StringUtils
     {
         return ucfirst($string);
     }
-
+	
+	public static function firstCharToLower($string)
+    {
+        return lcfirst($string);
+    }
+	
     public static function trimExplode($delimiter, $input)
     {
         if (is_null($input)) return array();
