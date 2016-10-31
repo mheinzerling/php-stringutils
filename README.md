@@ -18,4 +18,10 @@ This is a small library similar to Apache Commons StringUtils for Java.
     trimExplode
     isBlank
     
-    
+##Changelog
+
+### 2.0.0
+update to PHP 7
+
+### 1.0.0
+initial version 
