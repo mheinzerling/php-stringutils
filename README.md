@@ -6,19 +6,23 @@ This is a small library similar to Apache Commons StringUtils for Java.
 
 ##Composer
     "require": {
-        "mheinzerling/stringutils": "2.0.*"
+        "mheinzerling/stringutils": "2.1.*"
     },
     
 ##Method
-    startsWith
-    endsWith
-    contains
-    firstCharToUpper
-	firstCharToLower
-    trimExplode
-    isBlank
+    StringUtils::startsWith
+    StringUtils::endsWith
+    StringUtils::contains
+    StringUtils::firstCharToUpper
+....StringUtils::firstCharToLower
+    StringUtils::trimExplode
+    StringUtils::isBlank
+    Escape::html
     
 ##Changelog
+
+### 2.1.0
+add Escape utility class
 
 ### 2.0.0
 update to PHP 7
