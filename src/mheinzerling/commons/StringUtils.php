@@ -3,7 +3,7 @@ namespace mheinzerling\commons;
 
 class StringUtils
 {
-    public static function startsWith($haystack, $needle)
+    public static function startsWith(string $haystack = null, string $needle = null): bool
     {
         if (is_null($needle)) return false;
         $length = strlen($needle);
@@ -11,7 +11,7 @@ class StringUtils
         return substr($haystack, 0, $length) === $needle;
     }
 
-    public static function endsWith($haystack, $needle)
+    public static function endsWith(string $haystack = null, string $needle = null): bool
     {
         if (is_null($needle)) return false;
         $length = strlen($needle);
@@ -19,34 +19,51 @@ class StringUtils
         return substr($haystack, -$length) == $needle;
     }
 
-    public static function contains($haystack, $needle, $ignoreCase = true)
+    /**
+     * @param null|string $haystack
+     * @param null|string $needle
+     * @param bool $ignoreCase
+     * @return bool
+     * @SuppressWarnings(PHPMD.BooleanArgumentFlag)
+     */
+    public static function contains(string $haystack = null, string $needle = null, bool $ignoreCase = true): bool
     {
         if ($ignoreCase) return stristr($haystack, $needle) !== FALSE;
         return strstr($haystack, $needle) !== FALSE;
     }
 
-    public static function firstCharToUpper($string)
+    /**
+     * @param null|string $string
+     * @return null|string
+     */
+    public static function firstCharToUpper(string $string = null) /*: ?string*/
     {
         return ucfirst($string);
     }
-	
-	public static function firstCharToLower($string)
+
+    public static function firstCharToLower(string $string = null) /*: ?string*/
     {
         return lcfirst($string);
     }
-	
-    public static function trimExplode($delimiter, $input)
+
+
+    /**
+     * @param string|null $delimiter
+     * @param string|null $input
+     * @return string[]
+     */
+    public static function trimExplode(string $delimiter = null, string $input = null) : array
     {
-        if (is_null($input)) return array();
+        if (is_null($input)) return [];
 
         if (self::isBlank($delimiter)) {
-            return array(trim($input));
+            return [trim($input)];
         }
         $arr = explode($delimiter, $input);
         return array_map('trim', $arr);
     }
 
-    public static function isBlank($str)
+    public static function isBlank(string $str = null): bool
     {
         if (is_null($str)) return true;
         return trim($str) === '';
