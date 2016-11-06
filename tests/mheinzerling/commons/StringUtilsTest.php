@@ -45,6 +45,19 @@ class StringUtilsTest extends \PHPUnit_Framework_TestCase
         //TODO UTF-8 and special character
     }
 
+    public function testFirstCharToLower()
+    {
+        static::assertEquals(null, StringUtils::firstCharToLower(null), "null");
+        static::assertEquals("", StringUtils::firstCharToLower(""), "empty");
+        static::assertEquals(" F", StringUtils::firstCharToLower(" F"), "space");
+        static::assertEquals(" F", StringUtils::firstCharToLower(" F"), "space");
+        static::assertEquals("f", StringUtils::firstCharToLower("F"), "single letter");
+        static::assertEquals("foo", StringUtils::firstCharToLower("Foo"), "normal usecase");
+        static::assertEquals("foo", StringUtils::firstCharToLower("foo"), "no effect");
+        static::assertEquals("5foo", StringUtils::firstCharToLower("5foo"), "numeric");
+        //TODO UTF-8 and special character
+    }
+
     public function testIsBlank()
     {
         static::assertEquals(true, StringUtils::isBlank(null), "null");
