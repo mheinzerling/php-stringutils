@@ -6,7 +6,7 @@ This is a small library similar to Apache Commons StringUtils for Java.
 
 ##Composer
     "require": {
-        "mheinzerling/stringutils": "2.1.*"
+        "mheinzerling/stringutils": "^2.1.1"
     },
     
 ##Method
@@ -14,7 +14,7 @@ This is a small library similar to Apache Commons StringUtils for Java.
     StringUtils::endsWith
     StringUtils::contains
     StringUtils::firstCharToUpper
-....StringUtils::firstCharToLower
+    StringUtils::firstCharToLower
     StringUtils::trimExplode
     StringUtils::isBlank
     Escape::html
