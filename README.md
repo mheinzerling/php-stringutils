@@ -9,7 +9,7 @@ This is a small library similar to Apache Commons StringUtils for Java.
         "mheinzerling/stringutils": "^2.1.1"
     },
     
-##Method
+##Methods
     StringUtils::startsWith
     StringUtils::endsWith
     StringUtils::contains
@@ -22,10 +22,10 @@ This is a small library similar to Apache Commons StringUtils for Java.
 ##Changelog
 
 ### 2.1.0
-add Escape utility class
+* add Escape utility class
 
 ### 2.0.0
-update to PHP 7
+* update to PHP 7
 
 ### 1.0.0
-initial version 
+* initial version 
