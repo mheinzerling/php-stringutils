@@ -68,4 +68,19 @@ class StringUtils
         if (is_null($str)) return true;
         return trim($str) === '';
     }
+
+    /**
+     * @param string $haystack
+     * @param string $regex with one group
+     * @return null|string
+     */
+    public static function findAndRemove(string &$haystack = null, string $regex = null)//: ?string
+    {
+        if ($haystack == null || $regex == null) return null;
+        if (preg_match($regex, $haystack, $match)) {
+            $haystack = str_replace($match[0], "", $haystack);
+            return $match[1];
+        }
+        return null;
+    }
 }

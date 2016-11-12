@@ -87,5 +87,17 @@ class StringUtilsTest extends \PHPUnit_Framework_TestCase
         static::assertEquals(false, StringUtils::contains("foo", "O", false));
         static::assertEquals(true, StringUtils::contains("foo", "o", false));
     }
+
+    public function testFindAndRemove()
+    {
+        $null = null;
+        $input = "Some text with some informations";
+        static::assertEquals(null, StringUtils::findAndRemove($null, "@pattern@"));
+        static::assertEquals(null, StringUtils::findAndRemove($input, null));
+        static::assertEquals("some", StringUtils::findAndRemove($input, "@with ([a-z]+) @"));
+        static::assertEquals("Some text informations", $input);
+        static::assertEquals(null, StringUtils::findAndRemove($input, "@pattern@"));
+        static::assertEquals("Some text informations", $input);
+    }
 }
 

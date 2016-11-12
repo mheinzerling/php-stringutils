@@ -17,9 +17,13 @@ This is a small library similar to Apache Commons StringUtils for Java.
     StringUtils::firstCharToLower
     StringUtils::trimExplode
     StringUtils::isBlank
+    StringUtils::findAndRemove
     Escape::html
     
 ##Changelog
+
+### 2.2.0
+* add StringUtils::findAndRemove
 
 ### 2.1.0
 * add Escape utility class
