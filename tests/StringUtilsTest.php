@@ -99,5 +99,18 @@ class StringUtilsTest extends \PHPUnit_Framework_TestCase
         static::assertEquals(null, StringUtils::findAndRemove($input, "@pattern@"));
         static::assertEquals("Some text informations", $input);
     }
+
+    public function testImplode()
+    {
+        $c = function ($k, $v) {
+            return $k . "=>" . $v;
+        };
+        static::assertEquals("", StringUtils::implode(null, null, $c));
+        static::assertEquals("", StringUtils::implode(", ", null, $c));
+        static::assertEquals("0=>foo", StringUtils::implode(null, ['foo'], $c));
+        static::assertEquals("0=>foo", StringUtils::implode(",", ['foo'], $c));
+        static::assertEquals("0=>foo1=>bar", StringUtils::implode(null, ['foo', 'bar'], $c));
+        static::assertEquals("0=>foo, 1=>bar", StringUtils::implode(", ", ['foo', 'bar'], $c));
+    }
 }
 

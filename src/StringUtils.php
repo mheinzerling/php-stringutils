@@ -83,4 +83,17 @@ class StringUtils
         }
         return null;
     }
+
+    public static function implode(string $glue = null, array $pieces = null, callable $keyValueToString):string
+    {
+        if ($pieces == null || count($pieces) == 0) return "";
+        if ($glue == null) $glue = "";
+        $result = '';
+        foreach ($pieces as $key => $value) {
+            $result .= $keyValueToString($key, $value);
+            $result .= $glue;
+        }
+        if (count($pieces) > 0 && strlen($glue) > 0) $result = substr($result, 0, -strlen($glue));
+        return $result;
+    }
 }

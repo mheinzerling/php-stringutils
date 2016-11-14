@@ -18,12 +18,14 @@ This is a small library similar to Apache Commons StringUtils for Java.
     StringUtils::trimExplode
     StringUtils::isBlank
     StringUtils::findAndRemove
+    StringUtils::implode
     Escape::html
     
 ##Changelog
 
 ### 2.2.0
 * add StringUtils::findAndRemove
+* add StringUtils::implode
 
 ### 2.1.0
 * add Escape utility class
