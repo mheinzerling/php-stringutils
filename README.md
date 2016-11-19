@@ -19,6 +19,7 @@ This is a small library similar to Apache Commons StringUtils for Java.
     StringUtils::isBlank
     StringUtils::findAndRemove
     StringUtils::implode
+    StringUtils::findMatchingBracketPos
     Escape::html
     
 ##Changelog
@@ -26,8 +27,9 @@ This is a small library similar to Apache Commons StringUtils for Java.
 ### 2.2.0
 * add StringUtils::findAndRemove
 * add StringUtils::implode
-* make startsWith/endsWith ignore case
-* add trim characters
+* make StringUtils::startsWith/endsWith ignore case
+* add StringUtils::trimExplode characters
+* add StringUtils::findMatchingBracketPos
 
 ### 2.1.0
 * add Escape utility class

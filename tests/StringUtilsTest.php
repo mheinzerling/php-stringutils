@@ -115,5 +115,25 @@ class StringUtilsTest extends \PHPUnit_Framework_TestCase
         static::assertEquals("0=>foo1=>bar", StringUtils::implode(null, ['foo', 'bar'], $c));
         static::assertEquals("0=>foo, 1=>bar", StringUtils::implode(", ", ['foo', 'bar'], $c));
     }
+
+    public function testFindMatchingBracketPos()
+    {
+        static::assertEquals(-1, StringUtils::findMatchingBracketPos(""));
+        static::assertEquals(-1, StringUtils::findMatchingBracketPos(" "));
+        static::assertEquals(-1, StringUtils::findMatchingBracketPos("("));
+        static::assertEquals(1, StringUtils::findMatchingBracketPos("()"));
+        static::assertEquals(-1, StringUtils::findMatchingBracketPos("()", 1));
+        static::assertEquals(-1, StringUtils::findMatchingBracketPos("()", 3));
+        static::assertEquals(2, StringUtils::findMatchingBracketPos(" ()", 1));
+        static::assertEquals(5, StringUtils::findMatchingBracketPos("(abcd)"));
+        static::assertEquals(-1, StringUtils::findMatchingBracketPos("(abcd"));
+        static::assertEquals(5, StringUtils::findMatchingBracketPos("(abcd))"));
+        static::assertEquals(5, StringUtils::findMatchingBracketPos("[abcd]"));
+        static::assertEquals(5, StringUtils::findMatchingBracketPos("<abcd>"));
+        static::assertEquals(5, StringUtils::findMatchingBracketPos("{abcd}"));
+        //                                                               v            v
+        static::assertEquals(16, StringUtils::findMatchingBracketPos("(((((((((()))))))))", 3));
+        static::assertEquals(-1, StringUtils::findMatchingBracketPos("(((((((((())))))", 3));
+    }
 }
 

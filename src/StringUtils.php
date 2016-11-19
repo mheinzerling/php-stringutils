@@ -123,4 +123,29 @@ class StringUtils
         if (count($pieces) > 0 && strlen($glue) > 0) $result = substr($result, 0, -strlen($glue));
         return $result;
     }
+
+    /**
+     * @param string $haystack
+     * @param int $start 0-index position of opening bracket
+     * @return int 0-index end position of closing bracket, -1 if not found
+     * @throws \Exception
+     */
+    public static function findMatchingBracketPos(string $haystack, int $start = 0):int
+    {
+        if (strlen($haystack) < $start + 2) return -1;
+        $types = ['(' => ')', '<' => '>', '{' => '}', '[' => ']'];
+        $open = $haystack[$start];
+        if (isset($types[$open])) $close = $types[$open];
+        else throw new \Exception("'" . $open . "' is not a valid bracket.");
+
+        $openInnerBrackets = 0;
+        for ($pos = $start + 1, $s = strlen($haystack); $pos < $s; $pos++) {
+            if ($haystack[$pos] == $open) $openInnerBrackets++;
+            if ($haystack[$pos] == $close) {
+                $openInnerBrackets--;
+                if ($openInnerBrackets < 0) return $pos;
+            }
+        }
+        return -1;
+    }
 }
