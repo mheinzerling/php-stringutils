@@ -26,6 +26,8 @@ This is a small library similar to Apache Commons StringUtils for Java.
 ### 2.2.0
 * add StringUtils::findAndRemove
 * add StringUtils::implode
+* make startsWith/endsWith ignore case
+* add trim characters
 
 ### 2.1.0
 * add Escape utility class

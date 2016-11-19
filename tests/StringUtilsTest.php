@@ -17,6 +17,7 @@ class StringUtilsTest extends \PHPUnit_Framework_TestCase
         static::assertEquals(true, StringUtils::startsWith("abcdef", "a"), "valid - char");
         static::assertEquals(true, StringUtils::startsWith("abcdef", "abc"), "valid - substr");
         static::assertEquals(true, StringUtils::startsWith("abcdef", "abcdef"), "valid - full");
+        static::assertEquals(true, StringUtils::startsWith("aBcdef", "ABC", true), "valid - substr - ignore case");
     }
 
     public function testEndsWith()
@@ -31,6 +32,7 @@ class StringUtilsTest extends \PHPUnit_Framework_TestCase
         static::assertEquals(true, StringUtils::endsWith("abcdef", "f"), "valid - char");
         static::assertEquals(true, StringUtils::endsWith("abcdef", "def"), "valid - substr");
         static::assertEquals(true, StringUtils::endsWith("abcdef", "abcdef"), "valid - full");
+        static::assertEquals(true, StringUtils::endsWith("abcdEf", "DEF", true), "valid - substr - ignore case");
     }
 
     public function testFirstCharToUpper()
@@ -76,6 +78,7 @@ class StringUtilsTest extends \PHPUnit_Framework_TestCase
         static::assertEquals(["| foo| bar\n | \thoo"], StringUtils::trimExplode(null, $input), "no delimiter");
         static::assertEquals(["| foo| bar\n | \thoo"], StringUtils::trimExplode("", $input), "empty delimiter");
         static::assertEquals(["", "foo", "bar", "hoo"], StringUtils::trimExplode("|", $input), "valid");
+        static::assertEquals(["", "f", "bar", "h"], StringUtils::trimExplode("|", $input, StringUtils::TRIM_DEFAULT . "o"), "valid");
 
     }
 
