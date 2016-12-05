@@ -1,16 +1,13 @@
 <?php
+declare(strict_types = 1);
 
 namespace mheinzerling\commons;
 
-
 class Escape
 {
-    /**
-     * @param string|null $input
-     * @return string|null
-     */
-    public static function html(string $input = null) //:?string
+    public static function html(?string $input):?string
     {
+        if ($input == null) return null;
         return htmlspecialchars($input);
     }
 }

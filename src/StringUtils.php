@@ -1,73 +1,62 @@
 <?php
+declare(strict_types = 1);
+
 namespace mheinzerling\commons;
 
+/*
+* @SuppressWarnings(PHPMD.BooleanArgumentFlag)
+*/
 class StringUtils
 {
-    /**
-     * @param null|string $haystack
-     * @param null|string $needle
-     * @param bool $ignoreCase
-     * @return bool
-     * @SuppressWarnings(PHPMD.BooleanArgumentFlag)
-     */
-    public static function startsWith(string $haystack = null, string $needle = null, bool $ignoreCase = true): bool
+    public static function startsWith(?string $haystack, ?string $needle, bool $ignoreCase = true): bool
     {
         if (is_null($needle)) return false;
         $length = strlen($needle);
-        if ($length == 0) return true;
+        if ($length === 0) return true;
+        if (is_null($haystack)) return false;
         if ($ignoreCase) {
-            $needle = strtolower($needle);
-            $haystack = strtolower($haystack);
+            $needle = static::toLower($needle);
+            $haystack = static::toLower($haystack);
         }
         return substr($haystack, 0, $length) === $needle;
     }
 
-    /**
-     * @param null|string $haystack
-     * @param null|string $needle
-     * @param bool $ignoreCase
-     * @return bool
-     * @SuppressWarnings(PHPMD.BooleanArgumentFlag)
-     */
-    public static function endsWith(string $haystack = null, string $needle = null, bool $ignoreCase = true): bool
+    public static function endsWith(?string $haystack, ?string $needle, bool $ignoreCase = true): bool
     {
         if (is_null($needle)) return false;
         $length = strlen($needle);
-        if ($length == 0) return true;
+        if ($length === 0) return true;
+        if (is_null($haystack)) return false;
         if ($ignoreCase) {
-            $needle = strtolower($needle);
-            $haystack = strtolower($haystack);
+            $needle = static::toLower($needle);
+            $haystack = static::toLower($haystack);
         }
         return substr($haystack, -$length) == $needle;
     }
 
-    /**
-     * @param null|string $haystack
-     * @param null|string $needle
-     * @param bool $ignoreCase
-     * @return bool
-     * @SuppressWarnings(PHPMD.BooleanArgumentFlag)
-     */
-    public static function contains(string $haystack = null, string $needle = null, bool $ignoreCase = true): bool
+    public static function contains(?string $haystack, ?string $needle, bool $ignoreCase = true): bool
     {
         if ($ignoreCase) return stristr($haystack, $needle) !== FALSE;
         return strstr($haystack, $needle) !== FALSE;
     }
 
-    /**
-     * @param null|string $string
-     * @return null|string
-     */
-    public static function firstCharToUpper(string $string = null) /*: ?string*/
+    public static function firstCharToUpper(?string $string): ?string
     {
+        if ($string === null) return null;
         return ucfirst($string);
     }
 
-    public static function firstCharToLower(string $string = null) /*: ?string*/
+    public static function firstCharToLower(?string $string): ?string
     {
+        if ($string === null) return null;
         return lcfirst($string);
     }
 
+    public static function toLower(?string $string): ?string
+    {
+        if ($string === null) return null;
+        return strtolower($string);
+    }
 
     const TRIM_DEFAULT = " \t\n\r\0\x0B";
 
@@ -75,9 +64,9 @@ class StringUtils
      * @param string|null $delimiter
      * @param string|null $input
      * @param string $characterMask
-     * @return array|string[]
+     * @return string[]
      */
-    public static function trimExplode(string $delimiter = null, string $input = null, string $characterMask = self::TRIM_DEFAULT) : array
+    public static function trimExplode(?string $delimiter, ?string $input, string $characterMask = self::TRIM_DEFAULT): array
     {
         if (is_null($input)) return [];
 
@@ -90,18 +79,13 @@ class StringUtils
         }, $arr);
     }
 
-    public static function isBlank(string $str = null): bool
+    public static function isBlank(?string $str): bool
     {
         if (is_null($str)) return true;
         return trim($str) === '';
     }
 
-    /**
-     * @param string $haystack
-     * @param string $regex with one group
-     * @return null|string
-     */
-    public static function findAndRemove(string &$haystack = null, string $regex = null)//: ?string
+    public static function findAndRemove(?string &$haystack, ?string $regex): ?string
     {
         if ($haystack == null || $regex == null) return null;
         if (preg_match($regex, $haystack, $match)) {
@@ -111,9 +95,9 @@ class StringUtils
         return null;
     }
 
-    public static function implode(string $glue = null, array $pieces = null, callable $keyValueToString):string
+    public static function implode(?string $glue, ?array $pieces, callable $keyValueToString): string
     {
-        if ($pieces == null || count($pieces) == 0) return "";
+        if ($pieces == null || count($pieces) === 0) return "";
         if ($glue == null) $glue = "";
         $result = '';
         foreach ($pieces as $key => $value) {
@@ -130,7 +114,7 @@ class StringUtils
      * @return int 0-index end position of closing bracket, -1 if not found
      * @throws \Exception
      */
-    public static function findMatchingBracketPos(string $haystack, int $start = 0):int
+    public static function findMatchingBracketPos(?string $haystack, int $start = 0): int
     {
         if (strlen($haystack) < $start + 2) return -1;
         $types = ['(' => ')', '<' => '>', '{' => '}', '[' => ']'];

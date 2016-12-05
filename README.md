@@ -6,7 +6,7 @@ This is a small library similar to Apache Commons StringUtils for Java.
 
 ##Composer
     "require": {
-        "mheinzerling/stringutils": "^2.1.1"
+        "mheinzerling/stringutils": "^3.0.0"
     },
     
 ##Methods
@@ -20,9 +20,14 @@ This is a small library similar to Apache Commons StringUtils for Java.
     StringUtils::findAndRemove
     StringUtils::implode
     StringUtils::findMatchingBracketPos
+    StringUtils::toLower
     Escape::html
     
 ##Changelog
+
+### 3.0.0
+* update to PHP 7.1
+* StringUtils::toLower
 
 ### 2.2.0
 * add StringUtils::findAndRemove
